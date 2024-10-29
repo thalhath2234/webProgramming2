@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        table { width: 50%; border-collapse: collapse;}
+        th, td {border: 1px solid black; padding: 8px; text-align: left;}
+        th {background-color: #f2f2f2;}
+    </style>
+</head>
+<body>
+    <h2>Valuvakkattu Abdul Jabbar Thalhath M24W0256</h2>
+    <h3>Country and Capital Sorting</h2>
+    <button onclick="sortCountries('asc')">Sort Ascending</button><!--button to sort the countries in ascending order-->
+    <button onclick="sortCountries('desc')">Sort Descending</button><!--button to sort the countries in descending order-->
+
+    <table id="countryTable">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Capital</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <!-- Rows will be inserted here -->
+        </tbody>
+    </table>
+
+    <script>
+        //Valuvakkattu Abdul Jabbar Thalhath M24W0256
+        // Array of countries and their capitals
+        const countryData = [
+            { country: "India", capital: "New Delhi" },
+            { country: "Germany", capital: "Berlin" },
+            { country: "Australia", capital: "Canberra" },
+            { country: "Brazil", capital: "Brasilia" },
+            { country: "Canada", capital: "Ottawa" },
+            { country: "France", capital: "Paris" },
+            { country: "Italy", capital: "Rome" },
+            { country: "Japan", capital: "Tokyo" },
+            { country: "Russia", capital: "Moscow" },
+            { country: "United Kingdom", capital: "London" }
+        ];
+
+        // Function to sort and display countries
+        // order: 'asc' for ascending, 'desc' for descending
+        // Sorts based on country names
+        function sortCountries(order) {
+            // Ascending order: countryData[i].country > countryData[j].country
+            // Descending order: countryData[i].country < countryData[j].country
+            for (let i = 0; i < countryData.length - 1; i++) {
+                // Compare with all other elements
+                for (let j = i + 1; j < countryData.length; j++) {
+                    // Compare country names
+                    // Swap if necessary
+                    if (order === 'asc' && countryData[i].country > countryData[j].country) {//if the order is ascending
+                        let temp = countryData[i];//temp is a temporary variable to store the value of countryData[i]
+                        countryData[i] = countryData[j];//countryData[i] is assigned the value of countryData[j]
+                        countryData[j] = temp;//countryData[j] is assigned the value of temp
+                    } else if (order === 'desc' && countryData[i].country < countryData[j].country) {//if the order is descending
+                        let temp = countryData[i];
+                        countryData[i] = countryData[j];
+                        countryData[j] = temp;
+                    }
+                }
+            }
+            displayCountries();//display the countries
+        }
+
+        // Function to display sorted countries in the table
+        function displayCountries() {
+            const tableBody = document.getElementById('tableBody');//get the table body element
+            tableBody.innerHTML = ''; // Clear previous rows
+
+            for (let i = 0; i < countryData.length; i++) {//loop through the countryData array
+                const data = countryData[i];//get the data of the countryData array
+                const row = `<tr><td>${data.country}</td><td>${data.capital}</td></tr>`;//create a row with the country and capital
+                tableBody.innerHTML += row;//add the row to the table body
+            }
+        }
+
+        // Display countries when page loads
+        window.onload = function() {//when the page loads
+            displayCountries();//display the countries
+        }
+    </script>
+</body>
+</html>
